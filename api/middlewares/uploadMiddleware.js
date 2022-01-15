@@ -1,12 +1,19 @@
 const util = require("util");
 const path = require("path");
 const multer = require("multer");
+const fs = require("fs");
 
 var storage = multer.diskStorage({
   destination: (req, file, callback) => {
     // var pathSplit = file.originalname.split("_");
     // var dirName = pathSplit[0];
-    callback(null, path.join(`${__dirname}/./${req.params.layerName}`));
+    var buildDir = path.join(`${__dirname}/../layers/${req.params.layerName}`);
+    if (fs.existsSync(buildDir)) {
+      fs.rmdirSync(buildDir, { recursive: true });
+    }
+    fs.mkdirSync(buildDir);
+
+    callback(null, buildDir);
   },
   filename: (req, file, callback) => {
     const match = ["image/png", "image/jpeg"];
