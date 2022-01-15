@@ -1,6 +1,6 @@
 const upload = require("../middlewares/uploadMiddleware.js");
 
-const multipleUpload = async (req, res) => {
+const layerUpload = async (req, res) => {
   try {
     //layerName as path variable
     console.log(req.files);
@@ -18,5 +18,5 @@ const multipleUpload = async (req, res) => {
 };
 
 module.exports = {
-  multipleUpload: multipleUpload
+  layerUpload: layerUpload
 };
