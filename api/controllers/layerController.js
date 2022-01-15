@@ -13,7 +13,7 @@ const layerUpload = async (req, res) => {
     return res.send(`Layer uploaded`);
   } catch (error) {
     console.log(error);
-    return res.send(`Error when trying upload many files: ${error}`);
+    return res.send(`Error while trying to upload: ${error}`);
   }
 };
 
