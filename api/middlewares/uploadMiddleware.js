@@ -5,13 +5,11 @@ const fs = require("fs");
 
 var storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    // var pathSplit = file.originalname.split("_");
-    // var dirName = pathSplit[0];
+
     var buildDir = path.join(`${__dirname}/../layers/${req.params.layerName}`);
-    if (fs.existsSync(buildDir)) {
-      fs.rmdirSync(buildDir, { recursive: true });
+    if (!fs.existsSync(buildDir)) {
+      fs.mkdirSync(buildDir);
     }
-    fs.mkdirSync(buildDir);
 
     callback(null, buildDir);
   },
@@ -23,13 +21,11 @@ var storage = multer.diskStorage({
       return callback(message, null);
     }
 
-    // var pathSplit = file.originalname.split("_");
-    // var filename = `${pathSplit[1]}`;
     var filename = `${file.originalname}`;
     callback(null, filename);
   }
 });
 
-var uploadFiles = multer({ storage: storage }).array("multi-files");
+var uploadFiles = multer({ storage: storage }).array("layer-files");
 var uploadFilesMiddleware = util.promisify(uploadFiles);
 module.exports = uploadFilesMiddleware;
