@@ -2,7 +2,7 @@ const generateAssetsHelper = require('../helpers/generateAssetsHelper');
 let config = require('../configs/assetConfig');
 
 module.exports = {
-    generateAssets(req, res) {
+    async generateAssets(req, res) {
         let model = req.body;
         let user_name = model.user_name;
         let layers = model.layers;
@@ -30,7 +30,10 @@ module.exports = {
         config.format.width = pixels[1];
 
         generateAssetsHelper.buildSetup(config);
-        generateAssetsHelper.startCreating(config);
+        let generated_count =  await generateAssetsHelper.startCreating(config);
+
+        res.send({"image_count":generated_count})
+        res.end();
                 
     }
 }

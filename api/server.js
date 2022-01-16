@@ -5,6 +5,7 @@ dotenv.config()
 const initRoutes = require("./routes.js");
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 initRoutes(app);
 
 app.listen(process.env.PORT, () => {

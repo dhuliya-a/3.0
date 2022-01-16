@@ -2,33 +2,16 @@ const basePath = process.cwd();
 const { NETWORK } = require(`../constants/network`);
 const fs = require("fs");
 const { config } = require("dotenv");
-const sha1 = require(`${basePath}/node_modules/sha1`);
-const { createCanvas, loadImage } = require(`${basePath}/node_modules/canvas`);
+const sha1 = require('sha1');
+const { createCanvas, loadImage } = require('canvas');
 const buildDir = `${basePath}/build`;
 const layersDir = `${basePath}/layers`;
-const {
-  format,
-  baseUri,
-  description,
-  background,
-  uniqueDnaTorrance,
-  layerConfigurations,
-  rarityDelimiter,
-  shuffleLayerConfigurations,
-  debugLogs,
-  extraMetadata,
-  text,
-  namePrefix,
-  network,
-  solanaMetadata,
-  gif,
-} = require(`${basePath}/src/config.js`);
 
 var metadataList = [];
 var attributesList = [];
 var dnaList = new Set();
 const DNA_DELIMITER = "-";
-const HashlipsGiffer = require(`${basePath}/modules/HashlipsGiffer.js`);
+const HashlipsGiffer = require(`./HashlipsGiffer`);
 
 let hashlipsGiffer = null;
 
