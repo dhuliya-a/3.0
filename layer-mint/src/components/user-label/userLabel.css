@@ -1,0 +1,15 @@
+.user-label{
+    /* background-color: blue; */
+    width: 18%;
+    height: 20%;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 3%;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+}
+
+.user-title{
+    font-weight: lighter;
+}

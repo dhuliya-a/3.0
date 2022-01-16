@@ -1,0 +1,18 @@
+.progress-bar{
+    /* background-color: green; */
+    width: 3%;
+    height: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: absolute;
+    padding-left: 3%;
+    z-index: 1;
+    top: 20%;
+}
+
+.progress-bar-status{
+    background-color: purple;
+    width: 4%;
+    height: 91%;
+}
