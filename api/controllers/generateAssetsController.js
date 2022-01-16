@@ -1,5 +1,6 @@
 const generateAssetsHelper = require('../helpers/generateAssetsHelper');
 let config = require('../configs/assetConfig');
+const fs = require('fs');
 
 module.exports = {
     async generateAssets(req, res) {
@@ -29,10 +30,16 @@ module.exports = {
         config.format.height = pixels[0];
         config.format.width = pixels[1];
 
-        generateAssetsHelper.buildSetup(config);
-        let generated_count =  await generateAssetsHelper.startCreating(config);
+        generateAssetsHelper.buildSetup(config, user_name);
+        let generated_count =  await generateAssetsHelper.startCreating(config, user_name);
 
-        res.send({"image_count":generated_count})
+        // Delete the layers
+        let buildDir = `${process.cwd()}/${user_name}/layers`
+        if (fs.existsSync(buildDir)) {
+            fs.rmdirSync(buildDir, { recursive: true });
+        }
+
+        res.send({"image_count":generated_count-1})
         res.end();
                 
     }

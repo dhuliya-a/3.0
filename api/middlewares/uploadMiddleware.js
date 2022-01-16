@@ -6,12 +6,17 @@ const fs = require("fs");
 var storage = multer.diskStorage({
   destination: (req, file, callback) => {
 
-    var buildLayersDir = path.join(`${__dirname}/../layers`);
+    var buildUserDir = path.join(`${__dirname}/../${req.params.user}`);
+    if (!fs.existsSync(buildUserDir)) {
+      fs.mkdirSync(buildUserDir);
+    }
+
+    var buildLayersDir = path.join(`${__dirname}/..//${req.params.user}/layers`);
     if (!fs.existsSync(buildLayersDir)) {
       fs.mkdirSync(buildLayersDir);
     }
 
-    var buildDir = path.join(`${__dirname}/../layers/${req.params.layerName}`);
+    var buildDir = path.join(`${__dirname}/../${req.params.user}/layers/${req.params.layerName}`);
     if (!fs.existsSync(buildDir)) {
       fs.mkdirSync(buildDir);
     }

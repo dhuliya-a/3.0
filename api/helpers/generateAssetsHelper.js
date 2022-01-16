@@ -4,8 +4,8 @@ const fs = require("fs");
 const { config } = require("dotenv");
 const sha1 = require('sha1');
 const { createCanvas, loadImage } = require('canvas');
-const buildDir = `${basePath}/build`;
-const layersDir = `${basePath}/layers`;
+var buildDir = `${basePath}/build`;
+var layersDir = `${basePath}/layers`;
 
 var metadataList = [];
 var attributesList = [];
@@ -15,7 +15,8 @@ const HashlipsGiffer = require(`./HashlipsGiffer`);
 
 let hashlipsGiffer = null;
 
-const buildSetup = (configs) => {
+const buildSetup = (configs, user_name) => {
+  buildDir = `${basePath}/${user_name}/build`
   if (fs.existsSync(buildDir)) {
     fs.rmdirSync(buildDir, { recursive: true });
   }
@@ -313,11 +314,12 @@ function shuffle(array) {
   return array;
 }
 
-const startCreating = async (configs) => {
+const startCreating = async (configs, user_name) => {
   let layerConfigIndex = 0;
   let editionCount = 1;
   let failedCount = 0;
   let abstractedIndexes = [];
+  layersDir = `${basePath}/${user_name}/layers`
 
     //create canvas
     const canvas = createCanvas(configs.format.width, configs.format.height);

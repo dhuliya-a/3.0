@@ -4,7 +4,7 @@ const layerController = require("./controllers/layerController");
 const assetController = require("./controllers/generateAssetsController");
 
 let routes = app => {
-  router.post("/layerUpload/:layerName", layerController.layerUpload);
+  router.post("/layerUpload/:user/layer/:layerName", layerController.layerUpload);
   router.post("/generateAssets", (req, res) => {
     try {
         assetController.generateAssets(req, res);
