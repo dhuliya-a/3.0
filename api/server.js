@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
+const dotenv = require('dotenv');
+dotenv.config()
 const initRoutes = require("./routes.js");
 
 app.use(express.urlencoded({ extended: true }));
 initRoutes(app);
 
-let port = 8080;
-
-app.listen(port, () => {
-  console.log(`Running at localhost:${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Running at localhost:${process.env.PORT}`);
 });
