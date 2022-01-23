@@ -22,7 +22,7 @@ function CollectionDetails() {
   }
 
   return (
-    <div className="collection-details">
+    <div id="collection-details">
        <form className="collection-details-form" onSubmit={handleSubmit}>
           <label className="collection-name-label">
             Please enter the collection's name

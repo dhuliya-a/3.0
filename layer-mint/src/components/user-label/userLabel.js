@@ -1,9 +1,12 @@
 import './userLabel.css';
+import { useState } from 'react';
 
 function UserLabel() {
+
+  const [isLandingSlide, setIsLandingSlide] = useState(true);
     return (
       <div className="user-label">
-        <h1 className="user-title">Hi, adhuliya</h1>
+        {isLandingSlide?null:<h1 className="user-title">Hi, adhuliya</h1>}
       </div>
     );
   }
