@@ -1,18 +1,26 @@
 import './userLogin.css';
 
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { AppContext } from '../../../context';
 
 function UserLogin() {
 
   const [userName, setUserName] = useState("");
+
+  const { setCurrentSection } = useContext(AppContext);
+  const { setCurrentUserName } = useContext(AppContext);
+  const { setCurrentProgress } = useContext(AppContext);
     
   const handleSubmit = event => {
     sessionStorage.setItem('user_name', userName);
     //TODO - move to next section
     const nextDiv = document.getElementById("collection-details");
     console.log("next div : ", nextDiv);
-    nextDiv.scrollIntoView();
+    nextDiv.scrollIntoView({behavior: 'smooth'});
+    setCurrentUserName(userName);
+    setCurrentSection('collection_name');
+    setCurrentProgress("20%");
     event.preventDefault();
   }
 

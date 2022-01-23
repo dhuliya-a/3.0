@@ -10,6 +10,15 @@
     z-index: 1;
 }
 
-.user-title{
+.hide-user-title{
+    opacity: 0;
     font-weight: lighter;
+    cursor: none;
+}
+
+.user-title{
+    opacity: 1;
+    font-weight: lighter;
+    color: white;
+    transition: all 2.5s;
 }

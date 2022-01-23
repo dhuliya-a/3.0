@@ -5,6 +5,7 @@ import LayerDetails from './layer-details/layerDetails';
 import GeneratedPreview from './generated-preview/generatedPreview';
 
 import { useState, createContext } from 'react';
+import Scroll from '../../Scroll.js';
 
 // const Context = createContext({ generatedImages: null, setGeneratedImages: () => {} });
 
@@ -19,6 +20,7 @@ function Landing() {
         {/* <Context.Provider value={{generatedImages, setGeneratedImages}}> */}
         <LayerDetails></LayerDetails>
         <GeneratedPreview></GeneratedPreview>
+        {/* <Scroll /> */}
         {/* </Context.Provider> */}
     </div>
   );

@@ -23,21 +23,25 @@ function CollectionDetails() {
 
   return (
     <div id="collection-details">
-       <form className="collection-details-form" onSubmit={handleSubmit}>
+      <div className="collection-details-form-container">
+        <div className="collection-details-header">
+          collection details
+        </div>
+        <form className="collection-details-form" onSubmit={handleSubmit}>
           <label className="collection-name-label">
-            Please enter the collection's name
+            Collection name
           </label>
           <input type="text" className="collection-name-input" name="collection-name" value={collectionName} onInput={e => setCollectionName(e.target.value)}/>
           <label className="collection-desc-label">
-            Please enter the collection's description
+            Description
           </label>
           <input type="text" className="collection-desc-input" name="collection-desc" value={collectionDesc} onInput={e => setCollectionDesc(e.target.value)}/>
           <label className="collection-asset-size-label">
-            Please enter the collection's asset size
+            Collection's asset size
           </label>
           <input type="text" className="collection-asset-size-input" name="collection-asset-size" value={collectionAssetSize} onInput={e => setCollectionAssetSize(e.target.value)}/>
           <label className="collection-pixel-size-label">
-            Please enter the collection's dimensions(in pixels)
+            Collection's dimensions(in pixels)
           </label>
           <label className="collection-pixel-size-label" >
             X(in pixels)
@@ -49,6 +53,10 @@ function CollectionDetails() {
           <input type="text" className="collection-pixel-size-input" name="collection-pixel-y" value={collectionPixelY} onInput={e => setCollectionPixelY(e.target.value)}/>
           <input type="submit" value="Submit" />
         </form>
+      </div>
+      {/* <div className="collection-details-image">
+        <div className="collection-image"></div>
+      </div> */}
     </div>
   );
 }

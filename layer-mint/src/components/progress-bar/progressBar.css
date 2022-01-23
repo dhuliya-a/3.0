@@ -1,5 +1,14 @@
-.progress-bar{
-    /* background-color: green; */
+.progress-bar-status{
+    background-color: white;
+    width: 4%;
+    height: 91%;
+}
+
+.hide-progress-bar{
+    opacity: 0;
+    font-weight: lighter;
+    cursor: none;
+    
     width: 3%;
     height: 80%;
     display: flex;
@@ -11,8 +20,40 @@
     top: 20%;
 }
 
-.progress-bar-status{
-    background-color: purple;
-    width: 4%;
-    height: 91%;
+.progress-bar{
+    opacity: 1;
+    font-weight: lighter;
+    color: white;
+    transition: all 2.5s;
+    /* background-color: red; */
+    width: 3%;
+    height: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: absolute;
+    padding-left: 3%;
+    z-index: 1;
+    top: 20%;
+}
+
+.actual-progress{
+    width: 100%;
+    min-height: 0%;
+    /* min-height: 20%; */
+    background: linear-gradient(
+        0deg,
+        rgba(255, 0, 0, 1) 0%,
+        rgba(255, 154, 0, 1) 10%,
+        rgba(208, 222, 33, 1) 20%,
+        rgba(79, 220, 74, 1) 30%,
+        rgba(63, 218, 216, 1) 40%,
+        rgba(47, 201, 226, 1) 50%,
+        rgba(28, 127, 238, 1) 60%,
+        rgba(95, 21, 242, 1) 70%,
+        rgba(186, 12, 248, 1) 80%,
+        rgba(251, 7, 217, 1) 90%,
+        rgba(255, 0, 0, 1) 100%
+    );
+    transition: all 1s;
 }
