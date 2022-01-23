@@ -17,7 +17,18 @@ function UserLogin() {
   }
 
   const handleUserNameChange = event => {
-    setUserName(event.target.value);
+    const inputVal = event.target.value;
+    console.log("input val : ", inputVal);
+    setUserName(inputVal);
+    const authorName = document.getElementsByClassName("author-name")[0];
+    if(inputVal.length!=0){
+      console.log("not empty");
+      authorName.classList.add("hide-author-name");
+      console.log("author name : ", authorName);
+    }
+    else{
+      authorName.classList.remove("hide-author-name");
+    }
   }
 
 
@@ -27,10 +38,10 @@ function UserLogin() {
           <div  className="app-details">
             <div className="detail-header">This is <span className='layermint'>layermint.</span></div>
             <div className="detail-subtext">An image generation & NFT-minting tool using your layer assets.</div>
-            <div className="detail-subtext">To create your own collection, enter your</div>
-            {/* <span style={{color:'red', fontWeight: 'bold'}}>AUTHOR NAME</span> */}
+            <div className="detail-subtext">To create your own collection, enter the <span className='author-name'>author name.</span></div>
+            {/*  */}
           </div>
-          <input type="text" placeholder='AUTHOR NAME' className="username-input" name="name" onChange={handleUserNameChange}/>
+          <input type="text" placeholder='author name' className="username-input" autoComplete='off' name="name" onChange={handleUserNameChange}/>
           {/* <input type="submit" value="Submit" /> */}
         </form>
     </div>

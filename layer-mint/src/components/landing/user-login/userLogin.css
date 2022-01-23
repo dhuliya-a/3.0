@@ -66,6 +66,19 @@
     color: white;
 }
 
+.author-name{
+    font-weight: bold;
+    color: white;
+    transition: all 1s;
+    opacity: 0;
+}
+
+.hide-author-name{
+    opacity: 1;
+    /* transition: all 1s; */
+    /* color: white; */
+}
+
 /* input[type="text"],
 input[type="text"]:focus   
 {
