@@ -12,7 +12,7 @@ function CollectionDetails() {
   const [collectionPixelY, setCollectionPixelY] = useState('');
 
   const handleSubmit = event => {
-    
+
     let pixelArry = [collectionPixelX, collectionPixelY];
     sessionStorage.setItem('pixel_dimensions', pixelArry);
     sessionStorage.setItem('asset_count', collectionAssetSize);
@@ -23,7 +23,40 @@ function CollectionDetails() {
 
   return (
     <div id="collection-details">
-      <div className="collection-details-form-container">
+      <form className="collection-details-form" onSubmit={handleSubmit}>
+        <div className="collection-form collection-name">
+          <input type="text" className="collection-name-input" name="collection-name" value={collectionName} onInput={e => setCollectionName(e.target.value)} />
+          <label className="collection-name-label">collection name</label>
+        </div>
+        <div className="collection-description">
+          <input type="text" className="collection-desc-input" name="collection-desc" value={collectionDesc} onInput={e => setCollectionDesc(e.target.value)} />
+          <label className="collection-desc-label" style={{marginLeft:'1%'}}>description</label>
+        </div>
+        <div className="collection-form collection-dimensions">
+          <input type="text" className="collection-pixel-size-input" name="collection-pixel-x" value={collectionPixelX} onInput={e => setCollectionPixelX(e.target.value)} />
+          <label className="collection-pixel-size-label" >
+            X       (in pixels)
+          </label>
+          <input type="text" className="collection-pixel-size-input" name="collection-pixel-y" value={collectionPixelY} onInput={e => setCollectionPixelY(e.target.value)} />
+          <label className="collection-pixel-size-label">
+            Y       (in pixels)
+          </label>
+        </div>
+        <div className="collection-form collection-asset-size">
+          <input type="text" className="collection-asset-size-input" name="collection-asset-size" value={collectionAssetSize} onInput={e => setCollectionAssetSize(e.target.value)} />
+          <label className="collection-asset-size-label">
+            Collection's asset size
+          </label>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default CollectionDetails;
+
+
+{/* <div className="collection-details-form-container">
         <div className="collection-details-header">
           collection details
         </div>
@@ -53,12 +86,7 @@ function CollectionDetails() {
           <input type="text" className="collection-pixel-size-input" name="collection-pixel-y" value={collectionPixelY} onInput={e => setCollectionPixelY(e.target.value)}/>
           <input type="submit" value="Submit" />
         </form>
-      </div>
-      {/* <div className="collection-details-image">
+      </div> */}
+{/* <div className="collection-details-image">
         <div className="collection-image"></div>
       </div> */}
-    </div>
-  );
-}
-
-export default CollectionDetails;
