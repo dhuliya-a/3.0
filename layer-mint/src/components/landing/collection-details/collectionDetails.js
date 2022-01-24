@@ -29,23 +29,23 @@ function CollectionDetails() {
           <label className="collection-name-label">collection name</label>
         </div>
         <div className="collection-description">
-          <input type="text" className="collection-desc-input" name="collection-desc" value={collectionDesc} onInput={e => setCollectionDesc(e.target.value)} />
+          <textarea type="text" className="collection-desc-input" name="collection-desc" value={collectionDesc} onInput={e => setCollectionDesc(e.target.value)} />
           <label className="collection-desc-label" style={{marginLeft:'1%'}}>description</label>
         </div>
         <div className="collection-form collection-dimensions">
           <input type="text" className="collection-pixel-size-input" name="collection-pixel-x" value={collectionPixelX} onInput={e => setCollectionPixelX(e.target.value)} />
           <label className="collection-pixel-size-label" >
-            X       (in pixels)
+            x   (in pixels)
           </label>
           <input type="text" className="collection-pixel-size-input" name="collection-pixel-y" value={collectionPixelY} onInput={e => setCollectionPixelY(e.target.value)} />
           <label className="collection-pixel-size-label">
-            Y       (in pixels)
+            y   (in pixels)
           </label>
         </div>
         <div className="collection-form collection-asset-size">
           <input type="text" className="collection-asset-size-input" name="collection-asset-size" value={collectionAssetSize} onInput={e => setCollectionAssetSize(e.target.value)} />
           <label className="collection-asset-size-label">
-            Collection's asset size
+            collection's asset size
           </label>
         </div>
       </form>
