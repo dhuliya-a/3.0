@@ -5,12 +5,14 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    flex-direction: column;
     color: white;
 }
 
 .collection-form{
     display: flex;
     flex-direction: column;
+    margin-top: 1%;
     /* width: 100%;
     background-color: blueviolet;
     height: 100%; */
@@ -20,9 +22,15 @@
     width: 88%;
     /* background-color: aqua; */
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     height: 87%;
     flex-direction: column;
+}
+
+.collection-details-subtext{
+    width: 60%;
+    position: relative;
+    left: -22%;
 }
 
 .collection-form input, .collection-form input:focus{
@@ -37,7 +45,7 @@
     border-right-style: hidden;
     border-left-style: hidden;
     border-bottom-style: groove;
-    border-bottom-color: rgba(74, 255, 68, 0.877);
+    border-bottom-color: white;
     /* border-bottom: 1px solid white; */
 }
 
@@ -51,20 +59,29 @@
     margin-bottom: 2%;
     display: flex;
     justify-content: flex-start;
+    margin-top: 3%;
 }
 
+.collection-dimensions{
+    flex-direction: row;
+}
+.collection-dim{
+    display: flex;
+    flex-direction: column;
+}
 .collection-asset-size-input{
     width: 30%;
 }
 
 .collection-pixel-size-input{
-    width: 15%;
+    width: 45%;
 }
 
+/* rgba(74, 255, 68, 0.877) */
 .collection-desc-input{
     width: 45%;
     height: 100%;
-    border: 1px solid rgba(74, 255, 68, 0.877);
+    border: 1px solid white;
     padding: 0.5%;
     background-color: black;
     color: white;
@@ -75,25 +92,25 @@
 }
 
 .collection-name-label{
-    color: rgba(74, 255, 68, 0.877);
+    color: white;
 }
 
 .collection-desc-label{
-    color: rgba(74, 255, 68, 0.877);
+    color: white;
 }
 
 .collection-pixel-size-label{
-    color: rgba(74, 255, 68, 0.877);
+    color: white;
 }
 
 .collection-asset-size-label{
-    color: rgba(74, 255, 68, 0.877);
+    color: white;
 }
 
 .collection-details-banner{
     width: 20%;
     height: 80%;
-    background-color: rgba(74, 255, 68, 0.877);
+    background-color: white;
     position: absolute;
     right: 10%;
     /* bottom: 20%; */
@@ -102,6 +119,18 @@
     align-items: center;
     font-size: 60px;
     color: #000;
+}
+
+.collection-detail-submit{
+    width: 10%;
+    height: 5%;
+    margin-top: 2%;
+
+    background-color: transparent;
+    border: 3px solid white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
 }
 /* 
 .collection-details-form-container{

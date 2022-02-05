@@ -44,13 +44,15 @@ function UserLogin() {
     <div id="user-login">
         <form className="user-login-form" onSubmit={handleSubmit}>
           <div  className="app-details">
-            <div className="detail-header">This is <span className='layermint'>layermint.</span></div>
-            <div className="detail-subtext">An image generation & NFT-minting tool using your layer assets.</div>
+            <div className="detail-header layermint">layermint.</div>
+            <div className="detail-subtext">Integer ultricies tincidunt dapibus. Pellentesque fermentum imperdiet purus a elementum. Quisque in venenatis ex. Sed quis nunc magna. Aliquam sed quam nec quam aliquet euismod ac pulvinar.</div>
             <div className="detail-subtext">To create your own collection, enter the <span className='author-name'>author name.</span></div>
-            {/*  */}
+            <input type="text" placeholder='author name' className="username-input" autoComplete='off' name="name" onChange={handleUserNameChange}/>
+            <div className="form-submit">
+
+            <input type="submit" value="begin" className='user-form-submit layermint' />
+            </div>
           </div>
-          <input type="text" placeholder='author name' className="username-input" autoComplete='off' name="name" onChange={handleUserNameChange}/>
-          {/* <input type="submit" value="Submit" /> */}
         </form>
     </div>
   );

@@ -136,7 +136,7 @@ function LayerDetails() {
     // event.preventDefault();
     // }
   return (
-    <div className="layer-details">
+    <div id="layer-details">
       <div className="layers-form">
         <form onSubmit={handleSubmit}>
           <input type='button' value='add more' onClick={addClick} />
