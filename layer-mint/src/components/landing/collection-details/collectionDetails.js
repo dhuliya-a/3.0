@@ -23,6 +23,9 @@ function CollectionDetails() {
 
   return (
     <div id="collection-details">
+      <div className="collection-details-banner">
+        <div style={{position:'absolute',top:'13%'}}>ENTER COLLECTION DETAILS</div>
+      </div>
       <form className="collection-details-form" onSubmit={handleSubmit}>
         <div className="collection-form collection-name">
           <input type="text" className="collection-name-input" name="collection-name" value={collectionName} onInput={e => setCollectionName(e.target.value)} />
@@ -48,6 +51,7 @@ function CollectionDetails() {
             collection's asset size
           </label>
         </div>
+        <input type="submit" value="Submit" />
       </form>
     </div>
   );

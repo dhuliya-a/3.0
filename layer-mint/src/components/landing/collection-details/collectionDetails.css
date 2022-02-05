@@ -37,6 +37,7 @@
     border-right-style: hidden;
     border-left-style: hidden;
     border-bottom-style: groove;
+    border-bottom-color: rgba(74, 255, 68, 0.877);
     /* border-bottom: 1px solid white; */
 }
 
@@ -63,12 +64,45 @@
 .collection-desc-input{
     width: 45%;
     height: 100%;
-    border: 1px solid white;
+    border: 1px solid rgba(74, 255, 68, 0.877);
     padding: 0.5%;
     background-color: black;
     color: white;
+    resize: none;
+}
+.collection-desc-input:focus{
+    outline: none ;
 }
 
+.collection-name-label{
+    color: rgba(74, 255, 68, 0.877);
+}
+
+.collection-desc-label{
+    color: rgba(74, 255, 68, 0.877);
+}
+
+.collection-pixel-size-label{
+    color: rgba(74, 255, 68, 0.877);
+}
+
+.collection-asset-size-label{
+    color: rgba(74, 255, 68, 0.877);
+}
+
+.collection-details-banner{
+    width: 20%;
+    height: 80%;
+    background-color: rgba(74, 255, 68, 0.877);
+    position: absolute;
+    right: 10%;
+    /* bottom: 20%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    color: #000;
+}
 /* 
 .collection-details-form-container{
     display: flex;

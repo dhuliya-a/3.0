@@ -3,6 +3,7 @@ import React from 'react';
 import { useState, useContext } from 'react';
 import axios from 'axios';
 // import Context from './../landing';
+import {IoMdAddCircleOutline, IoMdRemoveCircleOutline} from 'react-icons/io';
 
 function LayerDetails() {
 
@@ -15,11 +16,14 @@ function LayerDetails() {
 
     function createInputs() {
         return values.val.map((el, i) =>
-          <div key={i}>
-            <input type="text" value={el||''} onChange={handleNameChange.bind(i)} />
-            <input type="file" name="fileName" multiple onChange={handleFileChange}></input>
-            <input type="button" value="upload" onClick={(e)=>handleUpload(e,i)}></input>
-            <input type='button' value='remove' name={i} onClick={removeClick.bind(i)} />
+          <div key={i} className='layer-component'>
+            {/* <div>{values.val[i]}</div> */}
+            <input type="text" value={el||''} className='layer-component-input' onChange={handleNameChange.bind(i)} />
+            <input type="file" name="fileName" className='layer-component-file-input' multiple onChange={handleFileChange}></input>
+            <button onClick={(e)=>handleFileUploadClick(e,i)}>Choose files</button>
+            <IoMdAddCircleOutline value="upload" className='layer-button' onClick={(e)=>handleUpload(e,i)}></IoMdAddCircleOutline>
+            <IoMdRemoveCircleOutline value='remove' className='layer-button' name={i} onClick={removeClick.bind(i)}></IoMdRemoveCircleOutline>
+            {/* <button value='remove' name={i} onClick={removeClick.bind(i)}></button> */}
           </div>
         );
       }
@@ -30,6 +34,9 @@ function LayerDetails() {
       console.log(vals);
     }
 
+    function handleFileUploadClick(event, i){
+      let fileButton = document.getElementsByClassName("layer-component-file-input")[0].click();
+    }
     async function handleUpload(event, i) {
     let vals = [...finalLayers];
     vals.push(values.val);
@@ -49,7 +56,9 @@ function LayerDetails() {
       // formData.append(`images[${i}]`, files[i])
       // /layerUpload/:user/layer/:layerName
       // formData.append('layer-files', files);
-      var uploadUrl = `http://13.235.23.218:8080/layerUpload/${userName}/layer/${values.val[i]}`;
+
+      
+      var uploadUrl = `http://52.66.253.150:9009/layerUpload/${userName}/layer/${values.val[i]}`;
       console.log(uploadUrl);
       axios.post(uploadUrl, formData, {
         headers: {
@@ -106,7 +115,7 @@ function LayerDetails() {
       // formData.append('asset_count', assetCount);
       // formData.append('collection_name', collectionName);
       // formData.append('collection_description', collectionDesc);
-      var generateUrl = `http://13.235.23.218:8080/generateAssets`;
+      var generateUrl = `http://52.66.253.150:9009/generateAssets`;
       axios.post(generateUrl, {
         user_name: username,
         layers: layers,
@@ -128,13 +137,17 @@ function LayerDetails() {
     // }
   return (
     <div className="layer-details">
+      <div className="layers-form">
         <form onSubmit={handleSubmit}>
-          {createInputs()}
           <input type='button' value='add more' onClick={addClick} />
           <br/>
           <br/>
           <input type="submit" value="Submit" />
-      </form>
+        </form>
+      </div>
+      <div className="layers-container">
+        {createInputs()}
+      </div>
     </div>
   );
 }

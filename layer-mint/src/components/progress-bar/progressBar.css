@@ -1,5 +1,5 @@
 .progress-bar-status{
-    background-color: white;
+    /* background-color: white; */
     width: 4%;
     height: 91%;
 }
@@ -41,7 +41,8 @@
     width: 100%;
     min-height: 0%;
     /* min-height: 20%; */
-    background: linear-gradient(
+    background-color:rgba(74, 255, 68, 0.877);
+    /* linear-gradient(
         0deg,
         rgba(255, 0, 0, 1) 0%,
         rgba(255, 154, 0, 1) 10%,
@@ -54,6 +55,6 @@
         rgba(186, 12, 248, 1) 80%,
         rgba(251, 7, 217, 1) 90%,
         rgba(255, 0, 0, 1) 100%
-    );
+    ); */
     transition: all 2.6s;
 }
