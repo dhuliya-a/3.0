@@ -1,6 +1,6 @@
 import './layerDetails.css';
 import React from 'react';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 // import Context from './../landing';
 import {IoMdAddCircleOutline, IoMdRemoveCircleOutline} from 'react-icons/io';
@@ -14,16 +14,27 @@ function LayerDetails() {
     const [currentFiles, setCurrentFiles] = useState([]);
     const [finalLayers, setFinalLayers] = useState([]);
 
+    useEffect(()=>{
+      addClick();
+    },[]);
+
     function createInputs() {
         return values.val.map((el, i) =>
+
+        //TODO - Collapsable component.
+        // layer name,  choose files, preview modal(only when choose files is complete), upload button(only when all other steps + rarity is complete)
+        // user clicks uplaod, disable choose files, make preview modal an Option, delete button enabled
+        // another layer is added post upload
+         
           <div key={i} className='layer-component'>
             {/* <div>{values.val[i]}</div> */}
             <input type="text" value={el||''} className='layer-component-input' onChange={handleNameChange.bind(i)} />
             <input type="file" name="fileName" className='layer-component-file-input' multiple onChange={handleFileChange}></input>
             <button onClick={(e)=>handleFileUploadClick(e,i)}>Choose files</button>
             <IoMdAddCircleOutline value="upload" className='layer-button' onClick={(e)=>handleUpload(e,i)}></IoMdAddCircleOutline>
-            <IoMdRemoveCircleOutline value='remove' className='layer-button' name={i} onClick={removeClick.bind(i)}></IoMdRemoveCircleOutline>
-            {/* <button value='remove' name={i} onClick={removeClick.bind(i)}></button> */}
+            {
+              values.val.length>1 && <IoMdRemoveCircleOutline value='remove' className='layer-button' name={i} onClick={removeClick.bind(i)} disabled></IoMdRemoveCircleOutline>
+            }
           </div>
         );
       }
@@ -42,6 +53,7 @@ function LayerDetails() {
     vals.push(values.val);
     setFinalLayers(vals);
     let res = await uploadLayerFilesFile(currentFiles, i);
+    addClick();
     }
 
     async function uploadLayerFilesFile(files, i){
@@ -76,9 +88,9 @@ function LayerDetails() {
     const handleFileChange = (event) => {
         const files = event.target.files;
         setCurrentFiles(files);
-        for (let i = 0; i < files.length; i++) {
-            alert(`images[${i}]`, files[i])
-        }
+        // for (let i = 0; i < files.length; i++) {
+        //     alert(`images[${i}]`, files[i])
+        // }
       }
   
     const removeClick = (event) => {
@@ -138,15 +150,10 @@ function LayerDetails() {
   return (
     <div id="layer-details">
       <div className="layers-form">
-        <form onSubmit={handleSubmit}>
-          <input type='button' value='add more' onClick={addClick} />
-          <br/>
-          <br/>
+      {createInputs()}
+      <form onSubmit={handleSubmit} className='layer-detail-submit'>
           <input type="submit" value="Submit" />
-        </form>
-      </div>
-      <div className="layers-container">
-        {createInputs()}
+      </form>
       </div>
     </div>
   );
