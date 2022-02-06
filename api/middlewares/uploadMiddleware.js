@@ -26,12 +26,14 @@ var storage = multer.diskStorage({
   filename: (req, file, callback) => {
     const match = ["image/png", "image/jpeg"];
 
+    console.log(new Date(), "Rarity object sent : ", req.body.rarity, ', Original filename : ', file.originalname)
+
     if (match.indexOf(file.mimetype) === -1) {
       var message = `${file.originalname} is invalid. Only accepts png/jpeg.`;
       return callback(message, null);
     }
 
-    var filename = `${file.originalname}`;
+    var filename = `${file.originalname.split(".")[0]} #${JSON.parse(req.body.rarity)[file.originalname]}.${file.originalname.split(".")[1]}`;
     callback(null, filename);
   }
 });

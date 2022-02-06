@@ -2,7 +2,7 @@ const upload = require("../middlewares/uploadMiddleware.js");
 
 const layerUpload = async (req, res) => {
   try {
-    //layerName as path variable
+    
     console.log(new Date(), ': Upload Images API called');
     await upload(req, res);
 
