@@ -24,7 +24,4 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: change directory
-      run: cd /home/ec2-user/github-runner/_work/3.0/3.0/layer-mint
-      working-directory: layer-mint
-    - run: npm i
+    - run: cd /home/ec2-user/github-runner/_work/3.0/3.0/layer-mint && npm i
