@@ -10,7 +10,7 @@ function App() {
   
   const [ currentSection, setCurrentSection ] = useState('user-name');
   const [ currentUserName, setCurrentUserName ] = useState('');
-
+  const [ generatedImages, setGeneratedImages ] = useState([]);
   const [ currentProgress, setCurrentProgress ] = useState("0");
 
   useEffect(() => {
@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div className="App">
-      <AppContext.Provider value={{ currentSection, setCurrentSection, currentUserName, setCurrentUserName, currentProgress, setCurrentProgress }}>
+      <AppContext.Provider value={{ currentSection, setCurrentSection, currentUserName, setCurrentUserName, currentProgress, setCurrentProgress, generatedImages, setGeneratedImages }}>
         <UserLabel></UserLabel>
         <ProgressBar></ProgressBar>
         <Landing></Landing>

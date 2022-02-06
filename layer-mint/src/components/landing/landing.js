@@ -11,7 +11,6 @@ import Scroll from '../../Scroll.js';
 
 function Landing() {
 
-  const [generatedImages, setGeneratedImages] = useState([]);
 
   return (
     <div className="landing">

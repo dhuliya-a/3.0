@@ -83,7 +83,7 @@
 }
 
 ::placeholder {
-    font-size: 35px;
+    /* font-size: 35px; */
     color: white;
     vertical-align: middle;
     font-weight: bold;
