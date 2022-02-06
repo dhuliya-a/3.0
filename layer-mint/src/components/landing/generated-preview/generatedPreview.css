@@ -15,7 +15,8 @@
     width: 99%;
     /* background-color: blanchedalmond; */
     height: 90%;
-    flex-direction: column;
+    flex-direction: row;
+    overflow-x: scroll;
 }
 
 .mint-options{
@@ -30,10 +31,10 @@
 
 .preview-image-container{
     border: 2px solid white;
-    height: 70vh;
-    width: 40vw;
+    height: 55vh;
+    width: 30vw;
     background-color: coral;
-    
+    margin: 1%;
 }
 
 .preview-image-container img{
