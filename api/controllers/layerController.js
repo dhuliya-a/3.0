@@ -2,11 +2,12 @@ const upload = require("../middlewares/uploadMiddleware.js");
 
 const layerUpload = async (req, res) => {
   try {
-    //layerName as path variable
-    console.log(req.files);
+    
+    console.log(new Date(), ': Upload Images API called');
     await upload(req, res);
 
     if (req.files.length <= 0) {
+      console.log(new Date(), ': No files uploaded');
       return res.send(`You must select at least 1 file.`);
     }
 
