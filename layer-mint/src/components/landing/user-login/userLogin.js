@@ -1,31 +1,58 @@
 import './userLogin.css';
 
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { AppContext } from '../../../context';
 
 function UserLogin() {
 
   const [userName, setUserName] = useState("");
+
+  const { setCurrentSection } = useContext(AppContext);
+  const { setCurrentUserName } = useContext(AppContext);
+  const { setCurrentProgress } = useContext(AppContext);
     
   const handleSubmit = event => {
     sessionStorage.setItem('user_name', userName);
+    //TODO - move to next section
+    const nextDiv = document.getElementById("collection-details");
+    console.log("next div : ", nextDiv);
+    nextDiv.scrollIntoView({behavior: 'smooth'});
+    setCurrentUserName(userName);
+    setCurrentSection('collection_name');
+    setCurrentProgress("20%");
     event.preventDefault();
   }
 
   const handleUserNameChange = event => {
-    setUserName(event.target.value);
+    const inputVal = event.target.value;
+    console.log("input val : ", inputVal);
+    setUserName(inputVal);
+    const authorName = document.getElementsByClassName("author-name")[0];
+    if(inputVal.length!=0){
+      console.log("not empty");
+      authorName.classList.add("hide-author-name");
+      console.log("author name : ", authorName);
+    }
+    else{
+      authorName.classList.remove("hide-author-name");
+    }
   }
 
 
   return (
-    <div className="user-login">
+    <div id="user-login">
         <form className="user-login-form" onSubmit={handleSubmit}>
-          <label className="user-login-label">
-            Please enter your user name
-          </label>
-          
-          <input type="text" className="username-input" name="name" onChange={handleUserNameChange}/>
-          <input type="submit" value="Submit" />
+          <div  className="app-details">
+            <div className="detail-header layermint">layermint.</div>
+            <div className="detail-subtext">Integer ultricies tincidunt dapibus. Pellentesque fermentum imperdiet purus a elementum. Quisque in venenatis ex. Sed quis nunc magna. Aliquam sed quam nec quam aliquet euismod ac pulvinar.</div>
+            <div className="detail-subtext">To create your own collection, enter the <span className='author-name'>author name.</span></div>
+            <input type="text" placeholder='author name' className="username-input" autoComplete='off' name="name" onChange={handleUserNameChange}/>
+            <div className="form-submit">
+
+            <input type="submit" value="begin" className='user-form-submit layermint' />
+            </div>
+          </div>
         </form>
     </div>
   );

@@ -8,8 +8,19 @@
     align-items: center;
     position: absolute;
     z-index: 1;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.hide-user-title{
+    opacity: 0;
+    font-weight: lighter;
+    cursor: none;
 }
 
 .user-title{
+    opacity: 1;
     font-weight: lighter;
+    color: white;
+    transition: all 2.5s;
 }

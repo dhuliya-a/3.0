@@ -3,25 +3,34 @@ import './generatedPreview.css';
 import React from 'react';
 import { useState, useEffect, useContext } from 'react';
 // import Context from './../landing';
+import { AppContext } from '../../../context';
 
 function GeneratedPreview() {
+  const { generatedImages } = useContext(AppContext);
+  
+  const { setCurrentSection } = useContext(AppContext);
+  const { setCurrentProgress } = useContext(AppContext);
 
-    const [genImages, setGenImages] = useState([]);
-    const handleGeneratedImages = () => {
-        let varRes = sessionStorage.getItem('generated-images').split(',');
-        console.log(varRes);
-        // var tempList = sessionStorage.getItem('generated-images').split[","];
-        // console.log(tempList);
-    setGenImages(varRes);
-}
+  function handleMintWithPolyGon(){
+    // setCurrentSection('done');
+    setCurrentProgress("100%");
+  }
   return (
-    <div className="generated-preview">
-       Generated Preview
-       <input type="button" value="get images" onClick={(e)=>handleGeneratedImages(e)}></input>
-       <div>
-       {genImages.map((imageUrl, i) => <img src={imageUrl}></img>)}
+    <div id="generated-preview">
+       {/* Generated Preview */}
+       {/* <input type="button" value="get images" onClick={(e)=>handleGeneratedImages(e)}></input> */}
+       <div className='preview-gallery'>
+       {generatedImages && generatedImages.map((imageUrl, i) => 
+        <div className='preview-image-container'>
+       <img src={imageUrl}></img>
        </div>
-        
+       )}
+       </div>
+      <div className="mint-option">
+          <button onClick={handleMintWithPolyGon}>Mint with polygon</button>
+          
+          <button onClick={handleMintWithPolyGon}>Mint with rinkeby</button>
+      </div>
     </div>
   );
 }

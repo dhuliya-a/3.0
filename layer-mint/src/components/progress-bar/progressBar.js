@@ -1,9 +1,21 @@
 import './progressBar.css';
+import { useState, useContext, useEffect } from 'react';
+import { AppContext } from './../../context';
 
 function ProgressBar() {
+
+  const { currentSection, currentProgress } = useContext(AppContext);
+  useEffect(()=>{
+    console.log("current progress : ", currentProgress);
+  },[currentProgress]);
+
+
     return (
-      <div className="progress-bar">
-        <div className="progress-bar-status"></div> 
+      <div className={currentSection=="user-name"?"hide-progress-bar":"progress-bar"}>  
+        {/* {<h1 className={currentSection=="user-name"?"hide-progress-bar":"progress-bar"}>Hi, {currentUserName}</h1>} */}
+        <div className="progress-bar-status">
+          <div className="actual-progress" style={{minHeight:currentProgress}}></div>
+        </div> 
       </div>
     );
   }

@@ -1,10 +1,145 @@
-.collection-details{
+#collection-details{
     width: 100vw;
     height: 100vh;
-    background-color:chocolate;
+    background-color:black;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    color: white;
+}
+
+.collection-form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1%;
+    /* width: 100%;
+    background-color: blueviolet;
+    height: 100%; */
+}
+
+.collection-details-form{
+    width: 88%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    height: 87%;
+    flex-direction: column;
+}
+
+.collection-details-subtext{
+    width: 60%;
+    position: relative;
+    left: -22%;
+}
+
+.collection-form input, .collection-form input:focus{
+    /* background-color: black; */
+    margin-bottom: 0.5%;
+    height: 25px;
+    background: transparent;    
+    outline-width: 0;
+    outline: none;
+    color: white;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+    border-bottom-color: white;
+    /* border-bottom: 1px solid white; */
+}
+
+.collection-name-input{
+    width: 30%;
+}
+
+.collection-description{
+    width: 100%;
+    height: 30%;
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 3%;
+}
+
+.collection-dimensions{
+    flex-direction: row;
+}
+.collection-dim{
+    display: flex;
+    flex-direction: column;
+}
+.collection-asset-size-input{
+    width: 30%;
+}
+
+.collection-pixel-size-input{
+    width: 45%;
+}
+
+/* rgba(74, 255, 68, 0.877) */
+.collection-desc-input{
+    width: 45%;
+    height: 100%;
+    border: 1px solid white;
+    padding: 0.5%;
+    background-color: black;
+    color: white;
+    resize: none;
+}
+.collection-desc-input:focus{
+    outline: none ;
+}
+
+.collection-name-label{
+    color: white;
+}
+
+.collection-desc-label{
+    color: white;
+}
+
+.collection-pixel-size-label{
+    color: white;
+}
+
+.collection-asset-size-label{
+    color: white;
+}
+
+.collection-details-banner{
+    width: 20%;
+    height: 80%;
+    background-color: white;
+    position: absolute;
+    right: 10%;
+    /* bottom: 20%; */
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 60px;
+    color: #000;
+}
+
+.collection-detail-submit{
+    width: 10%;
+    height: 5%;
+    margin-top: 2%;
+
+    background-color: transparent;
+    border: 3px solid white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* 
+.collection-details-form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
 }
 
 .collection-details-form{
@@ -14,4 +149,26 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
+    color: white;
+    background-color: turquoise;
 }
+.collection-details-header{
+    font-size: 70px;
+    font-weight: bold;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 1) 0%,
+        rgba(255, 154, 0, 1) 10%,
+        rgba(208, 222, 33, 1) 20%,
+        rgba(79, 220, 74, 1) 30%,
+        rgba(63, 218, 216, 1) 40%,
+        rgba(47, 201, 226, 1) 50%,
+        rgba(28, 127, 238, 1) 60%,
+        rgba(95, 21, 242, 1) 70%,
+        rgba(186, 12, 248, 1) 80%,
+        rgba(251, 7, 217, 1) 90%,
+        rgba(255, 0, 0, 1) 100%
+    );
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+} */
