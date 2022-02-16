@@ -26,13 +26,7 @@ function LayerDetails() {
 
   function createInputs() {
     return values.val.map((el, i) =>
-
-      //TODO - Collapsable component.
-      // layer name,  choose files, preview modal(only when choose files is complete), upload button(only when all other steps + rarity is complete)
-      // user clicks uplaod, disable choose files, make preview modal an Option, delete button enabled
-      // another layer is added post upload
-
-      <details key={i} className='layer-component'>
+      <details key={i} className='layer-component' open="true">
 
         <summary className="layer-data">
           <button style={{color: 'white'}}></button>
@@ -49,7 +43,7 @@ function LayerDetails() {
               Choose rarity for the asset between 0-100. Default value is 100.
             </div>
             {/* For every file uploaded */}
-            {currentFiles.length != 0 ? 
+            {currentFiles.length != 0  && uploadedLayers[el]==undefined ? 
             <div className="image-preview">
             {Array.from(currentFiles).map((object, i) =>
               <div className="image-detail-container">
@@ -95,6 +89,8 @@ function LayerDetails() {
     let fileButton = document.getElementsByClassName("layer-component-file-input")[0].click();
   }
   async function handleUpload(event, i) {
+    var layerDetail = document.getElementsByClassName("layer-component")[i];
+    layerDetail.removeAttribute("open");
     let vals = [...finalLayers];
     vals.push(values.val);
     setFinalLayers(vals);

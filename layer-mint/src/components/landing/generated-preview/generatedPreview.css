@@ -1,43 +1,124 @@
-#generated-preview{
+
+.loader{
     width: 100vw;
     height: 100vh;
-    background-color: black;
+    background-color: red;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+    perspective: 1000px;
 }
 
-.preview-gallery{
+.preview-slider{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 99%;
-    /* background-color: blanchedalmond; */
-    height: 90%;
+    background-color: blanchedalmond;
+    height: 85%;
+}
+
+.mint-options{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 10%;
     flex-direction: row;
+    margin-top: 1%;
+}
+
+.mint-button{
+    border: 2px solid white;
+    height: 50%;
+    font-weight: bold;
+    width: 40%;
+    font-size: 2.2vh;
+    text-align: center;
+    cursor: pointer;
+}
+/* #generated-preview{
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loader{
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    perspective: 1000px;
+}
+
+.preview-gallery-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 99%;
+    background-color: blanchedalmond;
+    height: 85%;
+    flex-direction: row;
+    overflow-x: scroll;
+    border: 5px solid brown;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+.preview-gallery{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: blue;
+    width: 100%;
+    height: 100%;
     overflow-x: scroll;
 }
 
 .mint-options{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    width: 99%;
+    width: 50%;
     height: 10%;
-    background-color: blueviolet;
+    flex-direction: row;
+    margin-top: 1%;
 }
+
+.mint-button{
+    border: 2px solid white;
+    height: 50%;
+    font-weight: bold;
+    width: 40%;
+    font-size: 2.2vh;
+    text-align: center;
+    cursor: pointer;
+}
+
 
 .preview-image-container{
     border: 2px solid white;
     height: 55vh;
-    width: 30vw;
+    width: 35vw;
     background-color: coral;
-    margin: 1%;
+    margin-left: 1%;
 }
+
+
 
 .preview-image-container img{
     width: 100%;
     height: 100%;
-}
+    object-fit: cover;
+} */

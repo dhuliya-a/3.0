@@ -45,8 +45,11 @@ function UserLogin() {
         <form className="user-login-form" onSubmit={handleSubmit}>
           <div  className="app-details">
             <div className="detail-header layermint">layermint.</div>
-            <div className="detail-subtext">Integer ultricies tincidunt dapibus. Pellentesque fermentum imperdiet purus a elementum. Quisque in venenatis ex. Sed quis nunc magna. Aliquam sed quam nec quam aliquet euismod ac pulvinar.</div>
-            <div className="detail-subtext">To create your own collection, enter the <span className='author-name'>author name.</span></div>
+            <div className="detail-subtext">An image generation & NFT-minting tool using your layer assets to create your own collection.
+Deploy it to a blockchain of your choice.</div>
+            <div className="detail-subtext">
+So artists can focus on creating.
+Enter the<span className='author-name'> author name.</span></div>
             <input type="text" placeholder='author name' className="username-input" autoComplete='off' name="name" onChange={handleUserNameChange}/>
             <div className="form-submit">
 
