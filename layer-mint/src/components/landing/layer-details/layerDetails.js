@@ -48,7 +48,7 @@ function LayerDetails() {
             {Array.from(currentFiles).map((object, i) =>
               <div className="image-detail-container">
                 <img src={URL.createObjectURL(object)} alt="" />
-                <input type="text" className='layer-component-input' onChange={(e) => handleRarityChange(e, object, el)} />
+                <input type="text"  onChange={(e) => handleRarityChange(e, object, el)} />
               </div>)}</div>
               : 
               
@@ -58,7 +58,7 @@ function LayerDetails() {
                 
                 <div className="image-detail-container">
                   <img src={URL.createObjectURL(object)} alt="" />
-                  <input type="text"  value={uploadedRarities[el][object.name]}  className='layer-component-input' onChange={(e) => handleRarityChange(e, object, el)} />
+                  <input type="text"  value={uploadedRarities[el][object.name]}   onChange={(e) => handleRarityChange(e, object, el)} />
                 </div>)}
                 </div>
                 : null}

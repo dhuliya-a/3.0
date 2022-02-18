@@ -16,6 +16,8 @@
     opacity: 0;
     font-weight: lighter;
     cursor: none;
+    
+    transition: all 2.5s;
 }
 
 .user-title{

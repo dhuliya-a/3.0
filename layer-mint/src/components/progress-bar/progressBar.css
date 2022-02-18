@@ -18,6 +18,8 @@
     padding-left: 3%;
     z-index: 1;
     top: 20%;
+    
+    transition: all 2.5s;
 }
 
 .progress-bar{
