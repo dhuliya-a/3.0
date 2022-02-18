@@ -42,7 +42,7 @@ function GeneratedPreview() {
         className="loader"
         active={isMinting}
         spinner
-        text='Loading your content...'
+        text='Minting your collection...'
       >
         <div className='preview-gallery-container'>
           {/* slider-inner */}

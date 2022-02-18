@@ -101,6 +101,7 @@
     padding: 1%;
     width: 98%;
     height: 54.4vh; 
+    overflow: hidden;
 }
 .preview-header{
     height: 5%;
@@ -129,12 +130,14 @@
     border: 2px solid white;
     background-color: rgba(74, 255, 68, 0.877);
     position: relative;
+    flex-shrink: 0;
 }
 .image-detail-container img{
     height: 40vh;
     width: 20vw;
     position: relative;
     z-index: 1;
+    object-fit: cover;
     /* background-color: slateblue; */
 }
 

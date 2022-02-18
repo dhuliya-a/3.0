@@ -98,7 +98,7 @@
     align-items: center;
     width: 99%;
     height: 85%;
-    /* overflow-x: scroll; */
+    overflow-x: scroll;
     /* border: 5px solid brown; */
     /* position: absolute; */
     /* transform-style: preserve-3d;
@@ -106,13 +106,14 @@
 }
 .preview-gallery{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: row;
     width: 95%;
     height: 95%;
     overflow-x: scroll;
-    border: 3px solid white;    
+    border: 3px solid white;
+    flex-shrink: 0;
 }
 
 .mint-options{
@@ -140,9 +141,10 @@
 .preview-image-container{
     border: 2px solid white;
     height: 55vh;
-    width: 35vw;
+    width: 30vw;
     background-color: coral;
-    margin-left: 1%;
+    margin: 1%;
+    flex-shrink: 0;
 }
 
 
