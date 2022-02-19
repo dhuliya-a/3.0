@@ -8,6 +8,23 @@
     flex-direction: column;
 }
 
+.gen-loader{
+    width: 100vw;
+    height: 100vh;
+    /* background-color: black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* background: linear-gradient(0deg, #50e640, #0c100f,#0c100f, #0c100f, #0c100f );
+    background-size: 50% 250%;
+
+    -webkit-animation: gradient 8s ease-in-out infinite;
+    -moz-animation: gradient 8s ease-in-out infinite;
+    animation: gradient 8s ease-in-out infinite; */
+
+}
+
 .layers-form{
     width: 93%;
     height: 80%;
@@ -30,7 +47,7 @@
 }
 
 .layer-component[open]{
-    height: 68vh;
+    height: 70vh;
 }
 
 .layer-component-input{

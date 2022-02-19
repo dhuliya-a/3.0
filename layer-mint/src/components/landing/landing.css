@@ -4,6 +4,6 @@
     background-color: aqua;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
-    overflow-x: scroll;
+    /* overflow: hidden; */
+    /* overflow-x: scroll; */
 }
