@@ -13,8 +13,8 @@
     height: 100vh;
     /* background-color: black; */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-end;
     flex-direction: column;
     /* background: linear-gradient(0deg, #50e640, #0c100f,#0c100f, #0c100f, #0c100f );
     background-size: 50% 250%;
