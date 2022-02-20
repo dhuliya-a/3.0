@@ -337,7 +337,7 @@ const startCreating = async (configs, user_name) => {
     abstractedIndexes = shuffle(abstractedIndexes);
   }
   configs.debugLogs
-    ? console.log("Editions left to create: ", abstractedIndexes)
+    ? console.log(new Date(), " Editions left to create: ", abstractedIndexes)
     : null;
   while (layerConfigIndex < configs.layerConfigurations.length) {
     const layers = layersSetup(
@@ -394,8 +394,8 @@ const startCreating = async (configs, user_name) => {
           saveImage(abstractedIndexes[0], canvas);
           addMetadata(newDna, abstractedIndexes[0], configs);
           saveMetaDataSingleFile(abstractedIndexes[0], configs);
-          console.log(
-            `Created edition: ${abstractedIndexes[0]}, with DNA: ${sha1(
+          console.log(new Date(),
+            ` Created edition: ${abstractedIndexes[0]}, with DNA: ${sha1(
               newDna
             )}`
           );
@@ -404,12 +404,12 @@ const startCreating = async (configs, user_name) => {
         editionCount++;
         abstractedIndexes.shift();
       } else {
-        console.log("DNA exists!");
+        console.log(new Date(), " DNA exists!");
         failedCount++;
         console.log(failedCount)
         if (failedCount >= configs.uniqueDnaTorrance) {
-          console.log(
-            `You need more layers or elements to grow your edition to ${configs.layerConfigurations[layerConfigIndex].growEditionSizeTo} artworks!`
+          console.log(new Date(), 
+            ` You need more layers or elements to grow your edition to ${configs.layerConfigurations[layerConfigIndex].growEditionSizeTo} artworks!`
           );
           return editionCount;
         }

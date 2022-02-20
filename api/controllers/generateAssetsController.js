@@ -22,7 +22,9 @@ module.exports = {
 
         layersOrder = []
         layers.forEach(element => {
-            layersOrder.push({"name":element});
+            if(element && element.length > 0) {
+                layersOrder.push({"name":element});
+            }
         });
         layerConfig[0].layersOrder = layersOrder;
         config.layerConfigurations = layerConfig;
@@ -31,26 +33,32 @@ module.exports = {
         config.format.height = pixels[0];
         config.format.width = pixels[1];
 
-        generateAssetsHelper.buildSetup(config, user_name);
-        let generated_count =  await generateAssetsHelper.startCreating(config, user_name);
+        try {
+            generateAssetsHelper.buildSetup(config, user_name);
+            let generated_count =  await generateAssetsHelper.startCreating(config, user_name);
 
-        // get image URLs
-        let imageURLs = await uploadImageHelper.uploadImageToIPFS(user_name);
+            // get image URLs
+            let imageURLs = await uploadImageHelper.uploadImageToIPFS(user_name);
 
-        // Delete the layers
-        let buildDirLayers = `${process.cwd()}/${user_name}/layers`
-        if (fs.existsSync(buildDirLayers)) {
-            fs.rmdirSync(buildDirLayers, { recursive: true });
+            // Delete the layers
+            let buildDirLayers = `${process.cwd()}/${user_name}/layers`
+            if (fs.existsSync(buildDirLayers)) {
+                fs.rmdirSync(buildDirLayers, { recursive: true });
+            }
+
+            // Delete the generated images
+            let buildDirImages = `${process.cwd()}/${user_name}/build/images`
+            if (fs.existsSync(buildDirImages)) {
+                fs.rmdirSync(buildDirImages, { recursive: true });
+            }
+
+            res.send({"image_count":generated_count-1, "image_url":imageURLs})
+            res.end();
+        } catch(err) {
+            console.log(err);
+            res.status(500).send({"image_count":0, "image_url":[]})
+            res.end();
         }
-
-        // Delete the generated images
-        let buildDirImages = `${process.cwd()}/${user_name}/build/images`
-        if (fs.existsSync(buildDirImages)) {
-            fs.rmdirSync(buildDirImages, { recursive: true });
-        }
-
-        res.send({"image_count":generated_count-1, "image_url":imageURLs})
-        res.end();
                 
     }
 }

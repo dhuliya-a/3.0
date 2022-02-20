@@ -9,7 +9,7 @@ const TIMEOUT = 1000;
 
 
 
-async function mintNFTs(user_name, mint_to_address, chain, contract_id) {
+async function mintNFTs(user_name, mint_to_address, chain, contract_id, api_key) {
 
     if (!fs.existsSync(path.join(`${basePath}/${user_name}/build`, "/minted"))) {
         fs.mkdirSync(path.join(`${basePath}/${user_name}/build`, "minted"));
@@ -32,7 +32,7 @@ async function mintNFTs(user_name, mint_to_address, chain, contract_id) {
         console.log(`${meta.name} already minted`);
         } catch(err) {
         try {
-            let mintData = await fetchWithRetry(meta, mint_to_address, chain, contract_id)
+            let mintData = await fetchWithRetry(meta, mint_to_address, chain, contract_id, api_key)
             const combinedData = {
             metaData: meta,
             mintData: mintData
@@ -50,7 +50,7 @@ function timer(ms) {
   return new Promise(res => setTimeout(res, ms));
 }
 
-async function fetchWithRetry(meta, mint_to_address, chain, contract_id)  {
+async function fetchWithRetry(meta, mint_to_address, chain, contract_id, api_key)  {
   await timer(TIMEOUT);
   return new Promise((resolve, reject) => {
     const fetch_retry = (_meta) => {
@@ -68,7 +68,7 @@ async function fetchWithRetry(meta, mint_to_address, chain, contract_id)  {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: AUTH,
+          Authorization: api_key,
         },
         body: JSON.stringify(mintInfo),
       };
@@ -111,7 +111,7 @@ const writeMintData = (_edition, _data, user_name) => {
   fs.writeFileSync(`${basePath}/${user_name}/build/minted/${_edition}.json`, JSON.stringify(_data, null, 2));
 };
 
-async function deployNFTContract(mint_to_address, chain, collection_name) {
+async function deployNFTContract(mint_to_address, chain, collection_name, api_key) {
     
     return new Promise((resolve, reject) => {
         let contract_options = {
@@ -119,7 +119,7 @@ async function deployNFTContract(mint_to_address, chain, collection_name) {
             url: 'https://api.nftport.xyz/v0/contracts',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: process.env.API_KEY
+                Authorization: api_key
             },
             body: {
                 chain: chain,
@@ -140,7 +140,7 @@ async function deployNFTContract(mint_to_address, chain, collection_name) {
     });
 }
 
-async function getContractAddress(transaction_hash, chain) {
+async function getContractAddress(transaction_hash, chain, api_key) {
     return new Promise((resolve, reject) => {
 
         let options = {
@@ -149,7 +149,7 @@ async function getContractAddress(transaction_hash, chain) {
         qs: {chain: chain},
         headers: {
             'Content-Type': 'application/json',
-            Authorization: process.env.API_KEY
+            Authorization: api_key
         }
         };
 
@@ -159,9 +159,7 @@ async function getContractAddress(transaction_hash, chain) {
             console.log(body, JSON.parse(body).contract_address)
 
             return resolve(JSON.parse(body).contract_address)
-           
         });
-
     });
 }
 
