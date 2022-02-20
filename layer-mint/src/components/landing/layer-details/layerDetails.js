@@ -140,7 +140,7 @@ function LayerDetails() {
     console.log('uploaded layers : ', JSON.stringify(uploadedLayers));
     setCurrentFiles([]);
     // http://52.66.253.150:9009
-    var uploadUrl = `http://52.66.253.150:9009/layerUpload/${userName}/layer/${values.val[i]}`;
+    var uploadUrl = `/layerUpload/${userName}/layer/${values.val[i]}`;
     console.log(uploadUrl);
     axios.post(uploadUrl, formData, {
       headers: {
@@ -197,7 +197,7 @@ function LayerDetails() {
   async function generateImages(username, pixelDimensions, layers, assetCount, collectionName, collectionDesc) {
     setIsGenerating(true);
     // http://52.66.253.150:9009
-    var generateUrl = `http://52.66.253.150:9009/generateAssets`;
+    var generateUrl = `/generateAssets`;
     axios.post(generateUrl, {
       user_name: username,
       layers: layers,

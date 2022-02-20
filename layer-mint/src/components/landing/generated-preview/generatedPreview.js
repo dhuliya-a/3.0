@@ -19,7 +19,7 @@ function GeneratedPreview() {
     if (confirmStatus === "confirm") {
       setIsMinting(true);
       // http://52.66.253.150:9009
-      var mintUrl = `http://52.66.253.150:9009/mint`;
+      var mintUrl = `/mint`;
       axios.post(mintUrl, {
         user_name: sessionStorage.getItem("user_name"),
         mint_to_address: "0x7A8FD49CB94B3a9E8e72365D9240Fb5E64280493",
