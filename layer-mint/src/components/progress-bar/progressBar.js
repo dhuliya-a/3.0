@@ -11,7 +11,7 @@ function ProgressBar() {
 
 
     return (
-      <div className={currentSection=="user-name"?"hide-progress-bar":"progress-bar"}>  
+      <div className={currentSection=="user-name"?"hide-progress-bar": currentSection =="generated-preview"?"hide-progress-bar":"progress-bar"}>  
         {/* {<h1 className={currentSection=="user-name"?"hide-progress-bar":"progress-bar"}>Hi, {currentUserName}</h1>} */}
         <div className="progress-bar-status">
           <div className="actual-progress" style={{minHeight:currentProgress}}></div>

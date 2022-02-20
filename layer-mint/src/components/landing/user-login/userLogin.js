@@ -3,6 +3,9 @@ import './userLogin.css';
 import React from 'react';
 import { useState, useContext, useEffect } from 'react';
 import { AppContext } from '../../../context';
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
 
 function UserLogin() {
 
@@ -11,13 +14,21 @@ function UserLogin() {
   const { setCurrentSection } = useContext(AppContext);
   const { setCurrentUserName } = useContext(AppContext);
   const { setCurrentProgress } = useContext(AppContext);
-    
-  const handleSubmit = event => {
+
+  const schema = yup.object({
+    name: yup.string().required(),
+  }).required();
+
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema)
+  });
+  const handleUserNameSubmit = event => {
+    console.log("errors :", errors);
     sessionStorage.setItem('user_name', userName);
     //TODO - move to next section
     const nextDiv = document.getElementById("collection-details");
     console.log("next div : ", nextDiv);
-    nextDiv.scrollIntoView({behavior: 'smooth'});
+    nextDiv.scrollIntoView({ behavior: 'smooth' });
     setCurrentUserName(userName);
     setCurrentSection('collection_name');
     setCurrentProgress("20%");
@@ -29,12 +40,12 @@ function UserLogin() {
     console.log("input val : ", inputVal);
     setUserName(inputVal);
     const authorName = document.getElementsByClassName("author-name")[0];
-    if(inputVal.length!=0){
+    if (inputVal.length != 0) {
       console.log("not empty");
       authorName.classList.add("hide-author-name");
       console.log("author name : ", authorName);
     }
-    else{
+    else {
       authorName.classList.remove("hide-author-name");
     }
   }
@@ -42,18 +53,26 @@ function UserLogin() {
 
   return (
     <div id="user-login">
-        <form className="user-login-form" onSubmit={handleSubmit}>
-          <div  className="app-details">
-            <div className="detail-header layermint">layermint.</div>
-            <div className="detail-subtext">Integer ultricies tincidunt dapibus. Pellentesque fermentum imperdiet purus a elementum. Quisque in venenatis ex. Sed quis nunc magna. Aliquam sed quam nec quam aliquet euismod ac pulvinar.</div>
-            <div className="detail-subtext">To create your own collection, enter the <span className='author-name'>author name.</span></div>
-            <input type="text" placeholder='author name' className="username-input" autoComplete='off' name="name" onChange={handleUserNameChange}/>
-            <div className="form-submit">
+      <form className="user-login-form" onSubmit={handleSubmit(handleUserNameSubmit)}>
+        <div className="app-details">
+          <div className="detail-header layermint">layermint.</div>
+          <div className="detail-subtext">An image generation & NFT-minting tool using your layer assets to create your own collection.
+            Deploy it to a blockchain of your choice.</div>
+          <div className="detail-subtext">
+            So artists can focus on creating.
+            Enter the<span className='author-name'> author name.</span></div>
+          <div className="input-holder">
+            <input type="text" placeholder='author name' className="username-input" {...register("name", { required: true })} autoComplete='off' name="name" onChange={handleUserNameChange} />
+            <p style={{ color: "red" }}>{errors.name?.message}</p>
+
+          </div>
+          <div className="form-submit">
 
             <input type="submit" value="begin" className='user-form-submit layermint' />
-            </div>
+
           </div>
-        </form>
+        </div>
+      </form>
     </div>
   );
 }

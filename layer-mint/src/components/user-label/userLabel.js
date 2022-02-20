@@ -14,7 +14,7 @@ function UserLabel() {
 
    return (
       <div className="user-label">
-        {<h1 className={currentSection=="user-name"?"hide-user-title":"user-title"}>Hi, {currentUserName}!</h1>}
+        {<h1 className={currentSection=="user-name"?"hide-user-title": currentSection =="generated-preview"?"hide-user-title":"user-title"}>Hi, {currentUserName}!</h1>}
       </div>
     );
   }

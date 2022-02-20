@@ -4,6 +4,7 @@ import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { AppContext } from '../../../context';
 import { IoMdAddCircleOutline, IoMdRemoveCircleOutline } from 'react-icons/io';
+import LoadingOverlay from 'react-loading-overlay';
 
 function LayerDetails() {
 
@@ -13,7 +14,7 @@ function LayerDetails() {
   const { setCurrentProgress } = useContext(AppContext);
 
   const [values, setValues] = useState({ val: [] });
-
+ const [isGenerating, setIsGenerating] = useState(false);
   const [currentFiles, setCurrentFiles] = useState([]);
   const [uploadedLayers, setUploadedLayers] = useState([]);
   const [uploadedRarities, setUploadedRarities] = useState([]);
@@ -26,18 +27,12 @@ function LayerDetails() {
 
   function createInputs() {
     return values.val.map((el, i) =>
-
-      //TODO - Collapsable component.
-      // layer name,  choose files, preview modal(only when choose files is complete), upload button(only when all other steps + rarity is complete)
-      // user clicks uplaod, disable choose files, make preview modal an Option, delete button enabled
-      // another layer is added post upload
-
-      <details key={i} className='layer-component'>
+      <details key={i} className='layer-component' open="true">
 
         <summary className="layer-data">
           <button style={{color: 'white'}}></button>
-          <input type="text" value={el || ''} className='layer-component-input' placeholder='layer name' onChange={handleNameChange.bind(i)} />
-          <input type="file" name="fileName" className='layer-component-file-input' multiple onChange={handleFileChange}></input>
+          <input type="text" value={el || ''} name="layerName" className='layer-component-input' placeholder='layer name' onChange={handleNameChange.bind(i)} />
+          <input type="file" name="layerFiles" className='layer-component-file-input' multiple onChange={handleFileChange}></input>
           <button className = 'layer-data-button' onClick={(e) => handleFileUploadClick(e, i)}>Choose files</button>
           {
             values.val.length > 1 && <IoMdRemoveCircleOutline value='remove' className='layer-button' name={i} onClick={removeClick.bind(i)} disabled></IoMdRemoveCircleOutline>
@@ -49,12 +44,12 @@ function LayerDetails() {
               Choose rarity for the asset between 0-100. Default value is 100.
             </div>
             {/* For every file uploaded */}
-            {currentFiles.length != 0 ? 
+            {currentFiles.length != 0  && uploadedLayers[el]==undefined ? 
             <div className="image-preview">
             {Array.from(currentFiles).map((object, i) =>
               <div className="image-detail-container">
                 <img src={URL.createObjectURL(object)} alt="" />
-                <input type="text" className='layer-component-input' onChange={(e) => handleRarityChange(e, object, el)} />
+                <input type="text"  onChange={(e) => handleRarityChange(e, object, el)} />
               </div>)}</div>
               : 
               
@@ -64,15 +59,22 @@ function LayerDetails() {
                 
                 <div className="image-detail-container">
                   <img src={URL.createObjectURL(object)} alt="" />
-                  <input type="text"  value={uploadedRarities[el][object.name]}  className='layer-component-input' onChange={(e) => handleRarityChange(e, object, el)} />
+                  <input type="text"  value={uploadedRarities[el][object.name]}   onChange={(e) => handleRarityChange(e, object, el)} />
                 </div>)}
                 </div>
                 : null}
-          
+             {currentFiles.length<=0 ?(uploadedLayers[el] && uploadedLayers[el].length>0 ? null: <p style={{ color: "#50e640" }}>Layer assets are required.</p>):null}
+          {el.length<=0 ? <p style={{ color: "#50e640" }}>Layer name is required.</p>: null}
+
           </div>
-          <div className="layer-upload">
-            <button value="upload" className='layer-data-button' onClick={(e) => handleUpload(e, i, el)}>upload</button>
-          </div>
+       
+
+          {el.length>0 && currentFiles.length>0 ?<div className="layer-upload">
+            <button value="upload" className='layer-data-button' 
+            onClick={(e) => handleUpload(e, i, el)} 
+           
+            >upload</button>
+          </div>:null}
         </div>
       </details>
     );
@@ -95,6 +97,9 @@ function LayerDetails() {
     let fileButton = document.getElementsByClassName("layer-component-file-input")[0].click();
   }
   async function handleUpload(event, i) {
+    console.log("upload clicked");
+    var layerDetail = document.getElementsByClassName("layer-component")[i];
+    layerDetail.removeAttribute("open");
     let vals = [...finalLayers];
     vals.push(values.val);
     setFinalLayers(vals);
@@ -134,7 +139,8 @@ function LayerDetails() {
     setUploadedRarities(tempRarities);
     console.log('uploaded layers : ', JSON.stringify(uploadedLayers));
     setCurrentFiles([]);
-    var uploadUrl = `http://52.66.253.150:9009/layerUpload/${userName}/layer/${values.val[i]}`;
+    // http://52.66.253.150:9009
+    var uploadUrl = `/layerUpload/${userName}/layer/${values.val[i]}`;
     console.log(uploadUrl);
     axios.post(uploadUrl, formData, {
       headers: {
@@ -165,33 +171,33 @@ function LayerDetails() {
   }
 
 
-  async function handleSubmit(event) {
-    sessionStorage.setItem('layers', finalLayers);
-    console.log("Final layers : ", values.val);
-    //send request for collection. take values from sessionStorage.
-    var username = sessionStorage.getItem('user_name');
-    var layers = values.val;
-    var pixels = sessionStorage.getItem('pixel_dimensions').split(",");
-    var pixelDimensions = [];
-    pixelDimensions.push(parseInt(pixels[0]));
-    pixelDimensions.push(parseInt(pixels[1]));
-    var assetCount = sessionStorage.getItem('asset_count');
-    var collectionName = sessionStorage.getItem('collection_name');
-    var collectionDesc = sessionStorage.getItem('collection_description');
-    //ignore last layer in layers.
-    let res = await generateImages(username, pixelDimensions, layers, assetCount, collectionName, collectionDesc);
-    event.preventDefault();
+  async function handleGenerateSubmit(event) {
+    if(finalLayers.length>0){
+      sessionStorage.setItem('layers', finalLayers);
+      console.log("Final layers : ", values.val);
+      //send request for collection. take values from sessionStorage.
+      var username = sessionStorage.getItem('user_name');
+      var layers = values.val;
+      var pixels = sessionStorage.getItem('pixel_dimensions').split(",");
+      var pixelDimensions = [];
+      pixelDimensions.push(parseInt(pixels[0]));
+      pixelDimensions.push(parseInt(pixels[1]));
+      var assetCount = sessionStorage.getItem('asset_count');
+      var collectionName = sessionStorage.getItem('collection_name');
+      var collectionDesc = sessionStorage.getItem('collection_description');
+      //ignore last layer in layers.
+      let res = await generateImages(username, pixelDimensions, layers, assetCount, collectionName, collectionDesc);
+      event.preventDefault();
+    }
+    else{
+      alert("Upload at least one layer to generate collection.");
+    }
   }
 
   async function generateImages(username, pixelDimensions, layers, assetCount, collectionName, collectionDesc) {
-    // const formData = new FormData();
-    // formData.append('user_name', username);
-    // formData.append('layers', layers);
-    // formData.append('pixel_dimensions', pixelDimensions);
-    // formData.append('asset_count', assetCount);
-    // formData.append('collection_name', collectionName);
-    // formData.append('collection_description', collectionDesc);
-    var generateUrl = `http://52.66.253.150:9009/generateAssets`;
+    setIsGenerating(true);
+    // http://52.66.253.150:9009
+    var generateUrl = `/generateAssets`;
     axios.post(generateUrl, {
       user_name: username,
       layers: layers,
@@ -207,6 +213,7 @@ function LayerDetails() {
       const nextDiv = document.getElementById("generated-preview");
       console.log("next div : ", nextDiv);
       nextDiv.scrollIntoView({behavior: 'smooth'});
+      setIsGenerating(false);
       setCurrentSection('generated-preview');
       setCurrentProgress("90%");  
     });
@@ -221,15 +228,22 @@ function LayerDetails() {
   // }
   return (
     <div id="layer-details">
+    <LoadingOverlay
+        className="gen-loader"
+        active={isGenerating}
+        spinner
+        text='Generating your collection...'
+      >
       <div className="layers-form">
         <div className="layers-index">
           {createInputs()}
         </div>
-        <form onSubmit={handleSubmit} className='layer-detail-submit'>
+        <form onSubmit={handleGenerateSubmit} className='layer-detail-submit'>
           <input type="submit" value="generate" className='layer-submit-button layermint' />
         </form>
       </div>
       {/* <button onClick={handleTest}></button> */}
+      </LoadingOverlay>
     </div>
   );
 }

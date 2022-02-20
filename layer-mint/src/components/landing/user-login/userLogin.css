@@ -7,6 +7,12 @@
     align-items: center;
     flex-direction: column;
 }
+.input-holder{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
 
 .layermint{
     background: linear-gradient(
@@ -50,7 +56,7 @@
     font-weight: lighter;
     font-size: 25px;
     color: white;
-    width: 80%;
+    width: 70%;
 }
 
 .username-input, .username-input:focus{
