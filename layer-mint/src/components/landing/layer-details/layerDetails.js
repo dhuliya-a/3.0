@@ -63,11 +63,11 @@ function LayerDetails() {
                 </div>)}
                 </div>
                 : null}
-          
-          </div>
-          {currentFiles.length<=0 ?(uploadedLayers[el] && uploadedLayers[el].length>0 ? null: <p style={{ color: "red" }}>Layer assets are required.</p>):null}
-          {el.length<=0 ? <p style={{ color: "red" }}>Layer name is required.</p>: null}
+             {currentFiles.length<=0 ?(uploadedLayers[el] && uploadedLayers[el].length>0 ? null: <p style={{ color: "#50e640" }}>Layer assets are required.</p>):null}
+          {el.length<=0 ? <p style={{ color: "#50e640" }}>Layer name is required.</p>: null}
 
+          </div>
+       
 
           {el.length>0 && currentFiles.length>0 ?<div className="layer-upload">
             <button value="upload" className='layer-data-button' 
@@ -139,7 +139,8 @@ function LayerDetails() {
     setUploadedRarities(tempRarities);
     console.log('uploaded layers : ', JSON.stringify(uploadedLayers));
     setCurrentFiles([]);
-    var uploadUrl = `/layerUpload/${userName}/layer/${values.val[i]}`;
+    // http://52.66.253.150:9009
+    var uploadUrl = `http://52.66.253.150:9009/layerUpload/${userName}/layer/${values.val[i]}`;
     console.log(uploadUrl);
     axios.post(uploadUrl, formData, {
       headers: {
@@ -195,7 +196,8 @@ function LayerDetails() {
 
   async function generateImages(username, pixelDimensions, layers, assetCount, collectionName, collectionDesc) {
     setIsGenerating(true);
-    var generateUrl = `/generateAssets`;
+    // http://52.66.253.150:9009
+    var generateUrl = `http://52.66.253.150:9009/generateAssets`;
     axios.post(generateUrl, {
       user_name: username,
       layers: layers,

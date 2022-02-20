@@ -132,6 +132,12 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+.label-error{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
 /* 
 .collection-details-form-container{
     display: flex;
